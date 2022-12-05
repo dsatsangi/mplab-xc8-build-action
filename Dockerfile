@@ -16,4 +16,4 @@ RUN wget -nv -O /tmp/mplabx http://ww1.microchip.com/downloads/en/DeviceDoc/MPLA
 COPY build.sh /build.sh
 RUN chmod +x /build.sh
 
-ENTRYPOINT [ "/build.sh" ]
+#ENTRYPOINT [ "/build.sh" ]
