@@ -13,12 +13,7 @@ RUN wget -nv -O /tmp/mplabx http://ww1.microchip.com/downloads/en/DeviceDoc/MPLA
   sudo ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --ipe 0 --collectInfo 0 --installdir /opt/mplabx && \
   rm mplabx
 
-#COPY build.sh /build.sh
-#RUN chmod +x /build.sh
+COPY build.sh /build.sh
+RUN chmod +x /build.sh
 
-COPY sonar.yml /sonar.yml
-RUN chmod +x /sonar.yml
-
-ENTRYPOINT [ "/sonar.yml" ]
-
-#ENTRYPOINT [ "/build.sh" ]
+ENTRYPOINT [ "/build.sh" ]
