@@ -1,6 +1,6 @@
 # MPLABX XC8 BUILD ACTION
 
-This project is clone of nahueespinosa/mplabx-xc8
+This project is clone of <a href="https://github.com/nahueespinosa/mplabx-xc8" target="_blank">nahueespinosa/mplabx-xc8</a>
 
 This action builds a MPLAB X IDE v5.30 project with XC8 compiler v2.10.  
 
