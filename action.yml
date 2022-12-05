@@ -18,21 +18,15 @@ runs:
   args:
     - ${{ inputs.project }}
     - ${{ inputs.configuration }}
-  env:
-    BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v1
-        with:
-          project: Blink128a.X
-          configuration: default
-      - name: Run build-wrapper
-        run: |
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} make -C Blink128a.X CONF=default build
-      - name: Run sonar-scanner
+  - name: Install sonar-scanner and build-wrapper
+    uses: SonarSource/sonarcloud-github-c-cpp@v1
+    with:
+      project: Blink128a.X
+      configuration: default
+  - name: Run build-wrapper
+     run: |
+     build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} make -C Blink128a.X CONF=default build
+  - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
