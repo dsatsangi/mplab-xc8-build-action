@@ -15,14 +15,14 @@ RUN wget -nv -O /tmp/mplabx http://ww1.microchip.com/downloads/en/DeviceDoc/MPLA
 
 # download sonar-scanner
 RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
-unzip -o $HOME/.sonar/sonar-scanner-cli-4.7.0.2747-linux.zip -d $HOME/.sonar/ && \
-export PATH=$HOME/.sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH && \
+unzip -o .sonar/sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ && \
+export PATH=.sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH && \
 export SONAR_SCANNER_OPTS="-server"
 
 # download build-wrapper
 RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
-unzip -o $HOME/.sonar/build-wrapper-linux-x86.zip -d $HOME/.sonar/ && \
-export PATH=$HOME/.sonar/build-wrapper-linux-x86/bin:$PATH
+unzip -o .sonar/build-wrapper-linux-x86.zip -d .sonar/ && \
+export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH
 
 COPY build.sh /build.sh
 RUN chmod +x /build.sh
