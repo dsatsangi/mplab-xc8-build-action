@@ -30,7 +30,7 @@ rm -rf $1/build
 /opt/mplabx/mplab_platform/bin/prjMakefilesGenerator.sh $1@$2 || exit 1
 build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make -C $1 CONF=$2 build || exit 2
 
-# Run sonar scanner (here, arguments are passed through the command line but most of them can be written in the sonar-project.properties file)
+# Run sonar scanner
 [[ -v SONAR_TOKEN ]] && SONAR_TOKEN_CMD_ARG="-Dsonar.login=${SONAR_TOKEN}"
 [[ -v SONAR_ORGANIZATION ]] && SONAR_ORGANIZATION_CMD_ARG="-Dsonar.organization=${SONAR_ORGANIZATION}"
 [[ -v SONAR_PROJECT_NAME ]] && SONAR_PROJECT_NAME_CMD_ARG="-Dsonar.projectName=${SONAR_PROJECT_NAME}"
