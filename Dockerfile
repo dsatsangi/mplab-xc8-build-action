@@ -22,15 +22,11 @@ RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-s
 RUN echo "Download completed."
 
 RUN echo "Unziping downloaded file..."
-RUN unzip sonar-scanner-cli-4.7.0.2747-linux.zip
+RUN unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ || exit 2
 RUN echo "Unzip completed."
 RUN rm sonar-scanner-cli-4.7.0.2747-linux.zip
 
-RUN echo "Listing all files...."
-RUN ls -all
-
-RUN echo "Installing to opt..."
-RUN sudo mv sonar-scanner-cli-4.7.0.2747-linux /var/opt/
+RUN export PATH=sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH  || exit 3
 
 RUN echo "Installation completed successfully."
 
