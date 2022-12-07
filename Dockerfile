@@ -14,24 +14,15 @@ RUN dpkg --add-architecture i386 && apt-get update && \
 #  rm mplabx
 
 # download build-wrapper
-#RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip || exit 1
-#RUN unzip -o build-wrapper-linux-x86.zip -d .sonar/ || exit 2
-#RUN export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH  || exit 3
+RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
+unzip -o build-wrapper-linux-x86.zip -d .sonar/ && \
+export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH
 
-RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
-RUN echo "Download completed."
-
-RUN echo "Unziping downloaded file..."
-RUN unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ || exit 2
-RUN echo "Unzip completed."
-RUN rm sonar-scanner-cli-4.7.0.2747-linux.zip
-
-RUN export PATH=sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH  || exit 3
-
-RUN echo "Installation completed successfully."
-
-RUN echo "You can use sonar-scanner!"
-
+# download sonar-scanner
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
+unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ && \
+rm sonar-scanner-cli-4.7.0.2747-linux.zip && \
+export PATH=sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
 
 
 COPY build.sh /build.sh
