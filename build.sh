@@ -2,22 +2,22 @@
 
 echo "Docker Container Building $1:$2"
 
-set -x -e
+GITHUB_TOKEN: SONAR_TOKEN
+SONAR_TOKEN: 5bf3ea1feddd4d10aa5b41bff392d78c2a317436
 
-#ls -all
-#rm -rf $1/dist
-#rm -rf $1/build
-#rm -rf $1/nbproject/Makefile-impl.mk
-#rm -rf $1/nbproject/Makefile-default.mk
-#rm -rf $1/nbproject/Makefile-genesis.mk
-#rm -rf $1/nbproject/Makefile-local-default.mk
-#rm -rf $1/nbproject/Makefile-rfariables.mk
-#rm -rf $1/nbproject/Package-default.bash
-#rm -rf $1/build/nbproject !(*.xml)
-#ls $1 -all
+mkdir -p $HOME/.sonar
+curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip 
+unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin" >> $GITHUB_PATH
 
-#/opt/mplabx/mplab_platform/bin/prjMakefilesGenerator.sh $1@$2 || exit 1
-#build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make -C $1 CONF=$2 build || exit 4
+curl -sSLo $HOME/.sonar/build-wrapper-linux-x86.zip ${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}
+unzip -o $HOME/.sonar/build-wrapper-linux-x86.zip -d $HOME/.sonar/
+echo "$HOME/.sonar/build-wrapper-linux-x86" >> $GITHUB_PATH
 
-# Run sonar scanner
-#sonar-scanner -Dsonar.organization=dsatsangi -Dsonar.projectKey=dsatsangi_xdmc -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=https://sonarcloud.io
+pwd
+ls -all
+rm -rf $1/dist
+rm -rf $1/build
+
+build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make -C Blink128a.X CONF=default build
+sonar-scanner --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
