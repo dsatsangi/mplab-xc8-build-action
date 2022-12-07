@@ -19,5 +19,3 @@ runs:
   args:
     - ${{ inputs.project }}
     - ${{ inputs.configuration }}
-    - ${{ inputs.GITHUB_TOKEN }}
-    - ${{ inputs.SONAR_TOKEN }}
