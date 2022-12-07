@@ -20,7 +20,7 @@ rm -rf $1/build
 ls $1 -all
 
 #/opt/mplabx/mplab_platform/bin/prjMakefilesGenerator.sh $1@$2 || exit 1
-#build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make -C $1 CONF=$2 build || exit 2
+build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make -C $1 CONF=$2 build || exit 4
 
 # Run sonar scanner
 #sonar-scanner -Dsonar.organization=dsatsangi -Dsonar.projectKey=dsatsangi_xdmc -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=https://sonarcloud.io
