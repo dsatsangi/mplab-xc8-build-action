@@ -26,6 +26,9 @@ RUN unzip sonar-scanner-cli-4.7.0.2747-linux.zip
 RUN echo "Unzip completed."
 RUN rm sonar-scanner-cli-4.7.0.2747-linux.zip
 
+RUN echo "Listing all files...."
+RUN ls -all
+
 RUN echo "Installing to opt..."
 RUN sudo mv sonar-scanner-cli-4.7.0.2747-linux /var/opt/
 
