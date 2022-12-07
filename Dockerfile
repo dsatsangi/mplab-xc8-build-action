@@ -27,9 +27,6 @@ RUN echo "Unzip completed."
 RUN rm sonar-scanner-cli-4.7.0.2747-linux.zip
 
 RUN echo "Installing to opt..."
-RUN if [ -d "/var/opt/sonar-scanner-cli-4.7.0.2747-linux" ];then
-RUN sudo rm -rf /var/opt/sonar-scanner-cli-4.7.0.2747-linux
-
 RUN sudo mv sonar-scanner-cli-4.7.0.2747-linux /var/opt
 
 RUN echo "Installation completed successfully."
