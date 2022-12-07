@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
-#RUN dpkg --add-architecture i386 && apt-get update && \
-#  apt-get install -y zip libc6:i386 libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386 wget sudo make && \
-#  rm -rf /var/lib/apt/lists/*
+RUN dpkg --add-architecture i386 && apt-get update && \
+  apt-get install -y zip libc6:i386 libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386 wget sudo make && \
+  rm -rf /var/lib/apt/lists/*
 #RUN wget -nv -O /tmp/xc8 https://ww1.microchip.com/downloads/en/DeviceDoc/xc8-v2.31-full-install-linux-x64-installer.run && \
 #  chmod +x /tmp/xc8 &&  \
 #  /tmp/xc8 --mode unattended --unattendedmodeui none --netservername localhost --LicenseType FreeMode --prefix /opt/microchip/xc8/v2.31 && \
