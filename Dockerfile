@@ -20,9 +20,9 @@ FROM ubuntu:18.04
 #export SONAR_SCANNER_OPTS="-server"
 
 # download build-wrapper
-RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
-unzip -o build-wrapper-linux-x86.zip -d .sonar/ && \
-export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH
+RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip || exit 1
+RUN unzip -o build-wrapper-linux-x86.zip -d .sonar/ || exit 2
+RUN export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH  || exit 2
 
 COPY build.sh /build.sh
 RUN chmod +x /build.sh
