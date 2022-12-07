@@ -11,15 +11,15 @@ SONAR_TOKEN: 5bf3ea1feddd4d10aa5b41bff392d78c2a317436
 #echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin" >> $GITHUB_PATH
 
 # download build-wrapper
-wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
-unzip -o build-wrapper-linux-x86.zip -d /opt/sonar && \
-export PATH=/opt/sonar/build-wrapper-linux-x86/bin:$PATH
+#wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
+#unzip -o build-wrapper-linux-x86.zip -d /opt/sonar && \
+#export PATH=/opt/sonar/build-wrapper-linux-x86/bin:$PATH
 
 # download sonar-scanner
-wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
-unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar && \
-rm sonar-scanner-cli-4.7.0.2747-linux.zip && \
-export PATH=/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
+#wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
+#unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar && \
+#rm sonar-scanner-cli-4.7.0.2747-linux.zip && \
+#export PATH=/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
 
 #curl -sSLo $HOME/.sonar/build-wrapper-linux-x86.zip ${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}
 #unzip -o $HOME/.sonar/build-wrapper-linux-x86.zip -d $HOME/.sonar/
