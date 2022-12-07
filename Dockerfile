@@ -13,16 +13,30 @@ RUN dpkg --add-architecture i386 && apt-get update && \
 #  sudo ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --ipe 0 --collectInfo 0 --installdir /opt/mplabx && \
 #  rm mplabx
 
-# download sonar-scanner
-RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip  | exit 1
-RUN unzip -o sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ | exit 2
-RUN export PATH=.sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH | exit 3
-RUN export SONAR_SCANNER_OPTS="-server"
-
 # download build-wrapper
 #RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip || exit 1
 #RUN unzip -o build-wrapper-linux-x86.zip -d .sonar/ || exit 2
 #RUN export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH  || exit 3
+
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+RUN echo "Download completed."
+
+RUN echo "Unziping downloaded file..."
+RUN unzip sonar-scanner-cli-4.7.0.2747-linux.zip
+RUN echo "Unzip completed."
+RUN rm sonar-scanner-cli-4.7.0.2747-linux.zip
+
+RUN echo "Installing to opt..."
+RUN if [ -d "/var/opt/sonar-scanner-cli-4.7.0.2747-linux" ];then
+RUN sudo rm -rf /var/opt/sonar-scanner-cli-4.7.0.2747-linux
+
+RUN sudo mv sonar-scanner-cli-4.7.0.2747-linux /var/opt
+
+RUN echo "Installation completed successfully."
+
+RUN echo "You can use sonar-scanner!"
+
+
 
 COPY build.sh /build.sh
 RUN chmod +x /build.sh
