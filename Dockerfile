@@ -14,15 +14,15 @@ RUN dpkg --add-architecture i386 && apt-get update && \
 #  rm mplabx
 
 # download sonar-scanner
-#RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
-#unzip -o .sonar/sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ && \
-#export PATH=.sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH && \
-#export SONAR_SCANNER_OPTS="-server"
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip  | exit 1
+RUN unzip -o sonar-scanner-cli-4.7.0.2747-linux.zip -d .sonar/ | exit 2
+RUN export PATH=.sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH | exit 3
+RUN export SONAR_SCANNER_OPTS="-server"
 
 # download build-wrapper
-RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip || exit 1
-RUN unzip -o build-wrapper-linux-x86.zip -d .sonar/ || exit 2
-RUN export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH  || exit 2
+#RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip || exit 1
+#RUN unzip -o build-wrapper-linux-x86.zip -d .sonar/ || exit 2
+#RUN export PATH=.sonar/build-wrapper-linux-x86/bin:$PATH  || exit 3
 
 COPY build.sh /build.sh
 RUN chmod +x /build.sh
