@@ -2,8 +2,8 @@
 
 echo "Docker Container Building $1:$2"
 
-GITHUB_TOKEN: SONAR_TOKEN
-SONAR_TOKEN: 5bf3ea1feddd4d10aa5b41bff392d78c2a317436
+#GITHUB_TOKEN: SONAR_TOKEN
+#SONAR_TOKEN: 5bf3ea1feddd4d10aa5b41bff392d78c2a317436
 
 #mkdir -p $HOME/.sonar
 #curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip 
