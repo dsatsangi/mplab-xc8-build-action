@@ -21,14 +21,18 @@ RUN dpkg --add-architecture i386 && apt-get update && \
 # download build-wrapper
 RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
 unzip -o build-wrapper-linux-x86.zip -d /opt/sonar && \
-rm build-wrapper-linux-x86.zip && \
-export PATH=/opt/sonar/build-wrapper-linux-x86/bin:$PATH
+rm build-wrapper-linux-x86.zip
+#export PATH=/opt/sonar/build-wrapper-linux-x86/bin:$PATH
 
 # download sonar-scanner
 RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
 unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar && \
-rm sonar-scanner-cli-4.7.0.2747-linux.zip && \
-export PATH=/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
+rm sonar-scanner-cli-4.7.0.2747-linux.zip
+#export PATH=/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
+
+ENV PATH="/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH"
+
+ENV PATH="/opt/sonar/build-wrapper-linux-x86/bin:$PATH" 
 
 
 RUN ls -all
