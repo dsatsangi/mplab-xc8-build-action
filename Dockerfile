@@ -36,8 +36,6 @@ ENV PATH $PATH:/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin
 RUN ls -all
 RUN echo $PATH
 
-RUN git clone git@github.com:dsatsangi/xdmc.git
-
 RUN wget https://github.com/dsatsangi/xdmc/archive/refs/heads/main.zip && \
 ls -all && \
 unzip -o main.zip && \
