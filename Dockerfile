@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # download and Install dependencies and packages
 RUN dpkg --add-architecture i386 && apt-get update && \
-  apt-get install -y zip libc6:i386 libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386 wget sudo make && \
+  apt-get install -y git zip libc6:i386 libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386 wget sudo make && \
   rm -rf /var/lib/apt/lists/*
 
 # download and Install XC8 2.31
@@ -22,17 +22,21 @@ RUN wget -nv -O /tmp/mplabx http://ww1.microchip.com/downloads/en/DeviceDoc/MPLA
 RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
 unzip -o build-wrapper-linux-x86.zip -d /opt/sonar && \
 rm build-wrapper-linux-x86.zip
-ENV PATH="/opt/sonar/build-wrapper-linux-x86/bin:$PATH"
+
+ENV PATH $PATH:/opt/sonar/build-wrapper-linux-x86/bin
 
 # download sonar-scanner
 RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
 unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar && \
 rm sonar-scanner-cli-4.7.0.2747-linux.zip
-ENV PATH="/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH"
+
+ENV PATH $PATH:/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin
 
 
 RUN ls -all
 RUN echo $PATH
+
+RUN git clone git@github.com:dsatsangi/xdmc.git
 
 RUN wget https://github.com/dsatsangi/xdmc/archive/refs/heads/main.zip && \
 ls -all && \
