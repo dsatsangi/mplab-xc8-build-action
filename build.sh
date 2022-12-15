@@ -11,3 +11,6 @@ rm -rf $1/build
 
 build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make -C $1 CONF=$2 build
 sonar-scanner --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+
+
+sonar-scanner.bat -D"sonar.organization=genisup" -D"sonar.projectKey=genisup_TN-ITMS128a" -D"sonar.sources=." -D"sonar.cfamily.build-wrapper-output=bw-output" -D"sonar.host.url=https://sonarcloud.io" && rmdir /S bw-output
