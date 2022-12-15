@@ -4,6 +4,19 @@ echo "Docker Container Building $1:$2"
 
 echo $PATH
 
+# download build-wrapper
+wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
+unzip -o build-wrapper-linux-x86.zip -d /opt/sonar
+rm build-wrapper-linux-x86.zip
+
+ENV PATH $PATH:/opt/sonar/build-wrapper-linux-x86/bin
+
+# download sonar-scanner
+wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar
+rm sonar-scanner-cli-4.7.0.2747-linux.zip
+ENV PATH $PATH:/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin
+
 pwd
 ls -all
 rm -rf $1/dist
