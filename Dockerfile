@@ -19,21 +19,26 @@ RUN wget -nv -O /tmp/mplabx http://ww1.microchip.com/downloads/en/DeviceDoc/MPLA
   rm mplabx
 
 # download build-wrapper
-#RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
-#unzip -o build-wrapper-linux-x86.zip -d /opt/sonar && \
-#rm build-wrapper-linux-x86.zip
-#ENV PATH="/opt/sonar/build-wrapper-linux-x86/bin:$PATH"
+RUN wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
+unzip -o build-wrapper-linux-x86.zip -d /opt/sonar && \
+rm build-wrapper-linux-x86.zip
+ENV PATH="/opt/sonar/build-wrapper-linux-x86/bin:$PATH"
 
 # download sonar-scanner
-#RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
-#unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar && \
-#rm sonar-scanner-cli-4.7.0.2747-linux.zip
-#ENV PATH="/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH"
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
+unzip sonar-scanner-cli-4.7.0.2747-linux.zip -d /opt/sonar && \
+rm sonar-scanner-cli-4.7.0.2747-linux.zip
+ENV PATH="/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH"
 
 
-#RUN ls -all
+RUN ls -all
+RUN echo $PATH
 
-#RUN echo $PATH
+RUN wget https://github.com/dsatsangi/xdmc/archive/refs/heads/main.zip && \
+unzip -o xdmc-main && \
+cd xdmc-main/Blink128a.X && \
+build-wrapper-linux-x86-64 --out-dir bw-output make clean -f nbproject/Makefile-default.mk SUBPROJECTS= .build-conf && \
+sonar-scanner -Dsonar.organization=dsatsangi -Dsonar.projectKey=dsatsangi_xdmc -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=https://sonarcloud.io
 
 #COPY build.sh /build.sh
 #RUN chmod +x /build.sh
