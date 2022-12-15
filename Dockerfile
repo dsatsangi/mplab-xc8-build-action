@@ -37,7 +37,7 @@ RUN echo $PATH
 RUN wget https://github.com/dsatsangi/xdmc/archive/refs/heads/main.zip && \
 ls -all && \
 unzip -o main.zip && \
-cd main/Blink128a.X && \
+cd xdmc-main/Blink128a.X && \
 build-wrapper-linux-x86-64 --out-dir bw-output make clean -f nbproject/Makefile-default.mk SUBPROJECTS= .build-conf && \
 sonar-scanner -Dsonar.organization=dsatsangi -Dsonar.projectKey=dsatsangi_xdmc -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=https://sonarcloud.io
 
