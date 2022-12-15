@@ -30,7 +30,10 @@ rm sonar-scanner-cli-4.7.0.2747-linux.zip && \
 export PATH=/opt/sonar/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
 
 
-COPY build.sh /build.sh
-RUN chmod +x /build.sh
+RUN ls -all
 
-ENTRYPOINT [ "/build.sh" ]
+
+#COPY build.sh /build.sh
+#RUN chmod +x /build.sh
+
+#ENTRYPOINT [ "/build.sh" ]
